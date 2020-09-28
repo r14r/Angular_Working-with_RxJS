@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="card-deck mb-3 text-center">
+		<div class="card mb-4 shadow-sm">
+			<div class="card-header">
+				<h4 class="my-0 font-weight-normal">Demo 1</h4>
+			</div>
+			<div class="card-body">
+				<textarea>
+					range(1, 200).pipe(
+						filter(x => x % 2 === 1),
+						map(x => x + x)
+					).subscribe(x => console.log(x));
+				</textarea>
+				<button (click)="demo()" type="button" class="btn btn-lg btn-block btn-outline-primary">Run</button>
+			</div>
+		</div>
+		<div class="card mb-4 shadow-sm">
+			<div class="card-header">
+				<h4 class="my-0 font-weight-normal">Pro</h4>
+			</div>
+			<div class="card-body">
+				<button (click)="demo()" type="button" class="btn btn-lg btn-block btn-outline-primary">Run</button>
+			</div>
+		</div>
+		<div class="card mb-4 shadow-sm">
+			<div class="card-header">
+				<h4 class="my-0 font-weight-normal">Enterprise</h4>
+			</div>
+			<button (click)="demo()" type="button" class="btn btn-lg btn-block btn-outline-primary">Run</button>
+		</div>
+	</div>
+</div>

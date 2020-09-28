@@ -1,0 +1,71 @@
+<div class="container">
+	<div class="content" role="main">
+		<h1>Eager vs Lazy</h1>
+		<h3>Let’s start with the following Promise</h3>
+		<div class="grid-container">
+			<div class="grid-item">
+				<pre><![CDATA[
+const greetingPoster = new Promise((resolve, reject) => {
+	console.log('Inside Promise (proof of being eager)');
+	resolve('Welcome! Nice to meet you.');
+});
+
+console.log('Before calling then on Promise');
+
+greetingPoster.then(res => console.log(`Greeting from promise: ${res}`));]]>
+	</pre>
+			</div>
+			<div class="grid-item">
+				<button (click)='demo_eager()'>Run Eager</button>
+				<div class="output" [innerHTML]="LOGOUTPUT"></div>
+			</div>
+			<div class="grid-item-span">
+				<p>
+					The Promise in the above example is eager, since the callback function provided to a Promise
+					constructor function is executed immediatelly. If you execute the code, you will see that the
+					message from within the Promise is displayed before calling a then method on the Promise object. On
+					the contrary, an Observable is lazy.
+				</p>
+
+				<p>
+					If you create an Observable, you provide a callback function that will be called upon invoking
+					subscribe method on the Observable object. As you can see, the message ‘Before calling subscribe…’
+					will appear before the console.log from within the Observable.
+				</p>
+
+				<p>
+					You may compare the above examples to a situation in which you arrive at the hotel and you see a
+					greeting poster (Promise-already prepared and available to read by calling then method), whereas an
+					Observable is a greeting lady who greets each new guest when he arrives (calling subscribe method on
+					an Observable).
+				</p>
+			</div>
+		</div>
+		<h3>On the contrary, an Observable is lazy.</h3>
+		<div class="grid-container">
+			<div class="grid-item">
+				<pre><![CDATA[
+const greetingLady$ = new Observable(observer => {
+	console.log('Inside Observable (proof of being lazy)');
+	observer.next('Hello! I am glad to get to know you.');
+	observer.complete();
+});
+
+console.log('Before calling subscribe on Observable');
+
+greetingLady$.subscribe({
+	next: console.log,
+	complete: () => console.log('End of conversation with preety lady')
+});
+			]]></pre>
+			</div>
+			<div class="grid-item">
+				<button (click)='demo_lazy()'>Run Lazy</button>
+				<div class="output" [innerHTML]="LOGOUTPUT"></div>
+			</div>
+			<div class="grid-item-span">
+
+			</div>
+		</div>
+	</div>
+</div>

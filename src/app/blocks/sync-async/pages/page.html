@@ -1,0 +1,63 @@
+<div class="container">
+	<div class="content" role="main">
+		<h1>Sync / Async</h1>
+
+		<h2>Sync</h2>
+		<div class="grid-container">
+			<div class="grid-item">
+				<pre><![CDATA[
+const greetingLady$ = new Observable(observer => {
+	observer.next('Hello! I am glad to get to know you.');
+	observer.complete();
+});
+
+this.log('Before calling subscribe on Observable');
+
+greetingLady$.subscribe({
+	next: this.log,
+	complete: () => this.log('End of conversation with preety lady')
+});
+
+this.log('After calling subscribe on Observable (proof of being able to execute sync)');
+					]]></pre>
+			</div>
+			<div class="grid-item">
+				<button (click)='run_code_async()'>Run Code</button>
+				<div class="output" [innerHTML]="LOGOUTPUT"></div>
+			</div>
+			<div class="grid-item-span">
+
+			</div>
+		</div>
+
+		<h2>Async</h2>
+		<div class="grid-container">
+			<div class="grid-item">
+				<pre><![CDATA[
+const tiredGreetingLady$ = new Observable(observer => {
+	setTimeout(() => {
+		observer.next('Hello! I am glad to get to know you.');
+		observer.complete();
+	}, 2000);
+});
+
+this.log('Before calling subscribe on Observable');
+
+tiredGreetingLady$.subscribe({
+	next: this.log,
+	complete: () => this.log('End of conversation with tired preety lady')
+});
+
+this.log('After calling subscribe on Observable (proof of being able to execute async)');
+					]]></pre>
+			</div>
+			<div class="grid-item">
+				<button (click)='run_code_sync()'>Run Code</button>
+				<div class="output" [innerHTML]="LOGOUTPUT"></div>
+			</div>
+			<div class="grid-item-span">
+
+			</div>
+		</div>
+	</div>
+</div>
